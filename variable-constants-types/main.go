@@ -39,6 +39,10 @@ func variableDecleration() {
 
 	// Variable Declaration type 4 (Global)
 	fmt.Println(myGlobalVariable)
+
+	// Variable Declaration Type Five
+	myVariableTypeFive, myVariableTypeFiveOne, myVariableTypeFiveTwo := "a", 2, 3.456
+	fmt.Println(myVariableTypeFive, myVariableTypeFiveOne, myVariableTypeFiveTwo)
 }
 
 func constantsDecleration() {
@@ -50,27 +54,48 @@ func constantsDecleration() {
 func typesDecleration() {
 	// String Data type with value
 	var stringDataType string = "String Data"
-	fmt.Println(stringDataType)
-
-	// String Data type without value
-	var stringDataTypeWithoutValue string
-	fmt.Println(stringDataTypeWithoutValue)
+	fmt.Printf("Variable stringDataType has an <%T> data type and value is {%v}\n", stringDataType, stringDataType)
 
 	// Integer Data type
 	var integerDataType int = 100
-	fmt.Println(integerDataType)
-
-	// Integer Data type without value
-	var integerDataTypeWithoutValue int
-	fmt.Println(integerDataTypeWithoutValue)
+	fmt.Printf("Variable integerDataType has an <%T> data type and value is {%v}\n", integerDataType, integerDataType)
 
 	// Float Data type
 	// As per industry standerds do not use numbers in your variable
 	// Excuse me here, just to explain clearly I am adding numbers into variables
 	var float32DataType float32 = 100.728364982739
-	fmt.Println(float32DataType)
+	fmt.Printf("Variable float32DataType has an <%T> data type and value is {%v}\n", float32DataType, float32DataType)
 
-	// Float Data type without value
-	var float32DataTypeWithoutValue float32
-	fmt.Println(float32DataTypeWithoutValue)
+	// Uint Data Type
+	// Uint is design to take only positive numbers > 0
+	var uintDataType uint = 723687462389
+	fmt.Printf("Variable uintDataType has an <%T> data type and value is {%v}\n", uintDataType, uintDataType)
+
+	// Boolean Data type
+	var booleanDataType bool = true
+	fmt.Printf("Variable booleanDataType has an <%T> data type and value is {%v}\n", booleanDataType, booleanDataType)
+
+	// Rune Data type
+	var runeDataType rune = 78263482
+	fmt.Printf("Variable runeDataType has an <%T> data type and value is {%v}\n", runeDataType, runeDataType)
+
+	// Complex Data type
+	var complexDataType complex64 = 12i
+	fmt.Printf("Variable complexDataType has an <%T> data type and value is {%v}\n", complexDataType, complexDataType)
+
+	// Complex Data type
+	var anyDataType any
+	fmt.Printf("Variable anyDataType has an <%T> data type and value is {%v}\n", anyDataType, anyDataType)
+
+	// Complex Data type
+	var byteDataType byte
+	fmt.Printf("Variable byteDataType has an <%T> data type and value is {%v}\n", byteDataType, byteDataType)
+
+	// Complex Data type
+	var errorDataType error
+	fmt.Printf("Variable errorDataType has an <%T> data type and value is {%v}\n", errorDataType, errorDataType)
+
+	// Complex Data type
+	var uintptrDataType uintptr
+	fmt.Printf("Variable uintptrDataType has an <%T> data type and value is {%v}\n", uintptrDataType, uintptrDataType)
 }
