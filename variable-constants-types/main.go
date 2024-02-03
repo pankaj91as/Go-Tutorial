@@ -49,6 +49,24 @@ func constantsDecleration() {
 	// Constant Decleration (You can declare constants with or without data type same as variable)
 	const myFirstConstant string = "Golang Coding Challange"
 	fmt.Println(myFirstConstant)
+
+	// Complex Data type
+	const (
+		Red int = iota
+		Orange
+		Yellow
+		Green
+		Blue
+		Indigo
+		Violet
+	)
+	fmt.Printf("Constant Red has an <%T> data type and value is {%v}\n", Red, Red)
+	fmt.Printf("Constant Orange has an <%T> data type and value is {%v}\n", Orange, Orange)
+	fmt.Printf("Constant Yellow has an <%T> data type and value is {%v}\n", Yellow, Yellow)
+	fmt.Printf("Constant Green has an <%T> data type and value is {%v}\n", Green, Green)
+	fmt.Printf("Constant Blue has an <%T> data type and value is {%v}\n", Blue, Blue)
+	fmt.Printf("Constant Indigo has an <%T> data type and value is {%v}\n", Indigo, Indigo)
+	fmt.Printf("Constant Violet has an <%T> data type and value is {%v}\n", Violet, Violet)
 }
 
 func typesDecleration() {
