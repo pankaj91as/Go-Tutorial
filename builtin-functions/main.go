@@ -1,7 +1,9 @@
 package main
 
-import "slices"
+import "fmt"
 
-func main(){
-	var cars =
+func main() {
+	// declear cars slice
+	cars := []string{"Audi", "BMW", "Mercedes"}
+	fmt.Println(cars)
 }
