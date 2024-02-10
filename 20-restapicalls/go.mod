@@ -1,0 +1,3 @@
+module restapicalls
+
+go 1.22.0
