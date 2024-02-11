@@ -1,10 +1,13 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/log"
 )
 
 // create movieDB slice variable from Movies struct
@@ -12,13 +15,15 @@ var movieDB []Movies
 
 // Movies struct
 type Movies struct {
-	Id          int      `json:"movie_number"`
-	Name        string   `json:"movie_name"`
-	Rating      float32  `json:"rating"`
-	Genres      []string `json:"genres"`
-	ReleaseDate string   `json:"movie_release_date"`
-	Poster      string   `json:"movie_banner"`
+	Id          int      `json:"movie_number" validate:"required"`
+	Name        string   `json:"movie_name" validate:"required"`
+	Rating      float32  `json:"rating" validate:"required"`
+	Genres      []string `json:"genres" validate:"required"`
+	ReleaseDate string   `json:"movie_release_date" validate:"required"`
+	Poster      string   `json:"movie_banner" validate:"required"`
 }
+
+var validate = validator.New()
 
 func main() {
 	fmt.Println("Design REST API In GoLang!")
@@ -78,10 +83,29 @@ func deleteMovie(c *fiber.Ctx) error {
 	return c.JSON(movieDB)
 }
 
+func validateMovieJson(body []byte) bool {
+	var inputJson Movies
+	if err := json.Unmarshal(body, &inputJson); err != nil {
+		return false
+	}
+
+	if err := validate.Struct(inputJson); err != nil {
+		return false
+	}
+
+	return true
+}
+
 func updateMovie(c *fiber.Ctx) error {
+	if !validateMovieJson(c.Body()) {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Invalid JSON format",
+		})
+	}
+
 	var updatedMovieData Movies
 	if err := c.BodyParser(&updatedMovieData); err != nil {
-		panic(err)
+		log.Error(err)
 	}
 	movieId := updatedMovieData.Id
 
