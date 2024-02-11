@@ -36,7 +36,10 @@ func main() {
 	// Delete Movie From DB
 	app.Delete("/movie/:id", deleteMovie)
 
-	app.Listen(":3000")
+	// Update Movie In DB
+	app.Patch("/movie/update", updateMovie)
+
+	app.Listen(":4000")
 }
 
 func getHomePath(c *fiber.Ctx) error {
@@ -72,6 +75,24 @@ func deleteMovie(c *fiber.Ctx) error {
 		}
 	}
 
+	return c.JSON(movieDB)
+}
+
+func updateMovie(c *fiber.Ctx) error {
+	var updatedMovieData Movies
+	if err := c.BodyParser(&updatedMovieData); err != nil {
+		panic(err)
+	}
+	movieId := updatedMovieData.Id
+
+	index := -1
+	for i, data := range movieDB {
+		if data.Id == movieId {
+			index = i
+		}
+	}
+
+	movieDB[index] = updatedMovieData
 	return c.JSON(movieDB)
 }
 
