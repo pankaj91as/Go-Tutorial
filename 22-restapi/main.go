@@ -52,6 +52,12 @@ func getHomePath(c *fiber.Ctx) error {
 }
 
 func insertMovie(c *fiber.Ctx) error {
+	if !validateMovieJson(c.Body()) {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Invalid JSON format",
+		})
+	}
+
 	var parsedMovie Movies
 	if err := c.BodyParser(&parsedMovie); err != nil {
 		panic(err)
