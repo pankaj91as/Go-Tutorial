@@ -34,4 +34,6 @@ With this tutorial you will get an enough knowledge & understanding to write GO 
 - [Goroutines](https://github.com/pankaj91as/Go-Tutorial/tree/main/23-goroutines)
 - [Mutex](https://github.com/pankaj91as/Go-Tutorial/tree/main/24-mutextest)
 - [Channels](https://github.com/pankaj91as/Go-Tutorial/tree/main/25-channels)
+- [Contexts](https://github.com/pankaj91as/Go-Tutorial/tree/main/26-contexts)
+- [Interfaces](https://github.com/pankaj91as/Go-Tutorial/tree/main/27-interfaces)
 - [Builtin Functions](https://github.com/pankaj91as/Go-Tutorial/tree/main/builtin-functions)
