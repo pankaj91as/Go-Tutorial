@@ -28,5 +28,6 @@ func main() {
 	}
 
 	// Sleep for a while to allow goroutines to complete
+	// we can add wait grou as well here; but for now i added sleep
 	time.Sleep(time.Second)
 }
