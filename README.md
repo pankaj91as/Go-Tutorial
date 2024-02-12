@@ -1,6 +1,6 @@
 # Go-Tutorial
 
-To learn & understand Go Language efficiently I have devided this course into 25 section.
+To learn & understand Go Language efficiently I have devided this course into 27 section.
 
 In each section I have tried to cover most of the use cases. You can try to do practice with this & do variation to precise your understanding.
 
