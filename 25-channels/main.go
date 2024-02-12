@@ -1,22 +1,33 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"sync"
+	"time"
+)
 
 func main() {
 	fmt.Println("Channels in GoLang!")
 
 	// Unbuffered Channel
 	// this required publisher & Subscriber should running on same time
-	UnbufferedChannelExErrored() // comment out this to run code
+	// UnbufferedChannelExErrored() // comment out this to run code
 	fmt.Println("")
 	UnbufferedChannelEx()
 
 	// Buffered Channel
 	// this can take input & store into buffer & consume when subscriber online
 	fmt.Println("")
-	BufferedChannelExErrored() // comment out this to run code
+	// BufferedChannelExErrored() // comment out this to run code
 	fmt.Println("")
 	BufferedChannelEx()
+
+	// One more some realistic unbuffered channel example
+	RealisticUnbufferedChannelEx()
+	fmt.Println("")
+	time.Sleep(2 * time.Second)
+	RealisticBufferedChannelEx()
 }
 
 func UnbufferedChannelExErrored() {
@@ -67,4 +78,52 @@ func BufferedChannelEx() {
 	fmt.Println(channelData)
 	channelData = <-channelA
 	fmt.Println(channelData)
+}
+
+func getMyLuckyNumber() int {
+	time.Sleep(time.Second)
+	return rand.Intn(100)
+}
+
+func RealisticUnbufferedChannelEx() {
+	relChan := make(chan int)
+	wg := sync.WaitGroup{}
+
+	go func() {
+		for i := 0; i < 1000; i++ {
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				num := getMyLuckyNumber()
+				relChan <- num
+			}()
+		}
+		wg.Wait()
+		close(relChan)
+	}()
+
+	for data := range relChan {
+		fmt.Println(data)
+	}
+}
+
+func RealisticBufferedChannelEx() {
+	bufferLength := 1000
+	relChan := make(chan int, bufferLength)
+	wg := sync.WaitGroup{}
+
+	for i := 0; i < bufferLength; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			num := getMyLuckyNumber()
+			relChan <- num
+		}()
+	}
+	wg.Wait()
+	close(relChan)
+
+	for data := range relChan {
+		fmt.Println(data)
+	}
 }
